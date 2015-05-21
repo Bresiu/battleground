@@ -33,7 +33,7 @@ public class Application {
 
 		String html = this.urlDownloader.downloadUrl(url);
 		String parsedHtml = this.htmlParser.parseHtmlForText(html);
-		int numberOfLetter = characterCounter.count(character, parsedHtml);
+		int numberOfLetter = this.characterCounter.count(character, parsedHtml);
 
 		System.out.println("There is " + numberOfLetter + " \"" + character + "\" character in site: " + url.toString());
 	}
