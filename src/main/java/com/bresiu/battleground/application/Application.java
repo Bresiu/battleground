@@ -2,7 +2,7 @@ package com.bresiu.battleground.application;
 
 import com.bresiu.battleground.application.helpers.ArgsParser;
 import com.bresiu.battleground.application.helpers.HtmlParser;
-import com.bresiu.battleground.application.helpers.LetterCounter;
+import com.bresiu.battleground.application.helpers.CharacterCounter;
 import com.bresiu.battleground.application.helpers.UrlDownloader;
 import com.bresiu.battleground.application.helpers.model.ArgsBundle;
 
@@ -17,25 +17,25 @@ public class Application {
 	private ArgsParser argsParser;
 	private UrlDownloader urlDownloader;
 	private HtmlParser htmlParser;
-	private LetterCounter letterCounter;
+	private CharacterCounter characterCounter;
 
 	public Application() {
 		this.argsParser = new ArgsParser();
 		this.urlDownloader = new UrlDownloader();
 		this.htmlParser = new HtmlParser();
-		this.letterCounter = new LetterCounter();
+		this.characterCounter = new CharacterCounter();
 	}
 
 	private void printResult(String[] args) throws IOException {
 		ArgsBundle argsBundle = argsParser.parseArguments(args);
 		URL url = argsBundle.getUrl();
-		Character letter = argsBundle.getCharacter();
+		Character character = argsBundle.getCharacter();
 
 		String html = this.urlDownloader.downloadUrl(url);
 		String parsedHtml = this.htmlParser.parseHtmlForText(html);
-		int numberOfLetter = letterCounter.countLetter(letter, parsedHtml);
+		int numberOfLetter = characterCounter.count(character, parsedHtml);
 
-		System.out.println("There is " + numberOfLetter + " \"" + letter + "\" letter in site: " + url.toString());
+		System.out.println("There is " + numberOfLetter + " \"" + character + "\" character in site: " + url.toString());
 	}
 
 	public static void main(String[] args) throws IOException {

@@ -16,11 +16,11 @@ public class ArgsParser {
 
 	private ArgsBundle validateArgsOrGetDefault(String[] args) throws MalformedURLException {
 		if (args.length == 2) {
-			Character letter = parseChar(args[0]);
+			Character character = parseChar(args[0]);
 			URL url = parseUrl(args[1]);
 
-			if (letter != null && url != null) {
-				return new ArgsBundle(letter, url);
+			if (character != null && url != null) {
+				return new ArgsBundle(character, url);
 			}
 		}
 		return getDefaultArgs();
@@ -43,6 +43,6 @@ public class ArgsParser {
 	}
 
 	private ArgsBundle getDefaultArgs() throws MalformedURLException {
-		return new ArgsBundle(Constants.DEFAULT_LETTER, parseUrl(Constants.DEFAULT_URL_ADDRESS));
+		return new ArgsBundle(Constants.DEFAULT_CHARACTER, parseUrl(Constants.DEFAULT_URL_ADDRESS));
 	}
 }
